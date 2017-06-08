@@ -177,7 +177,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        'Cornford\Googlmapper\MapperServiceProvider',
 
     ],
 
@@ -229,7 +228,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Mapper' => 'Conford\Googlmapper\Facades\MapperFacade',
     ],
 
 ];

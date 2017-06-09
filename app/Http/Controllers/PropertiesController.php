@@ -22,9 +22,10 @@ class PropertiesController extends Controller
     public function index()
     {
         $properties = $this->PropertiesRepository->getPaginate($this->nbrPerPage);
+        $test = $this;
         $links = $properties->render();
 
-        return view('liste', compact('properties', 'links'));
+        return view('liste', compact(['properties', 'test'], 'links'));
     }
 
     public function create()

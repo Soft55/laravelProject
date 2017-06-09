@@ -1,39 +1,51 @@
-@extends('templates.template')
+@extends('layouts.app')
 
-@section('header')
-    @if(Auth::check())
-        <div class="btn-group pull-right">
-            {!! link_to_route('properties.create', 'Créer un article', [], ['class' => 'btn btn-info']) !!}
-            {!! link_to_route('logout', 'Deconnexion', [], ['class' => 'btn btn-warning']) !!}
-        </div>
-    @else
-        {!! link_to('login', 'Se connecter', ['class' => 'btn btn-info pull-right']) !!}
-    @endif
-@endsection
-
-@section('contenu')
+@section('content')
     @if(isset($info))
         <div class="row alert alert-info">{{ $info }}</div>
     @endif
     {!! $links !!}
-    @foreach($properties as $properties)
-        <article class="row bg-primary">
-            <div class="col-md-12">
-                <header>
-                    <h1>{{ $properties->longitude }}</h1>
-                </header>
-                <hr>
-                <section>
-                    <p>{{ $properties->latitude }}</p>
-                    @if(Auth::check())
-                        {!! Form::open(['method' => 'DELETE', 'route' => ['properties.destroy', $properties->id]]) !!}
-                        {!! Form::submit('Supprimer cet article', ['class' => 'btn btn-danger btn-xs ', 'onclick' => 'return confirm(\'Vraiment supprimer cet article ?\')']) !!}
-                        {!! Form::close() !!}
-                    @endif
-                </section>
+    @foreach($properties as $property)
+        @if($property->user_id == Auth::id())
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="panel panel-default col-xs-12">
+                            <div class="panel-heading col-xs-6">Your longitude</div>
+
+                            <div class="panel-heading col-xs-6">Your latitude</div>
+
+                            <div class="panel-body col-xs-6">
+                                {{ $property->longitude }}
+                            </div>
+                            <div class="panel-body col-xs-6">
+                                {{ $property->latitude }}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="map" class="col-md-8 col-md-offset-2" style="height:400px;width: 100%;">
+                        <script>
+                            function initMap() {
+                                var uluru = {lat: {{ $property->latitude }}, lng: {{ $property->longitude }}};
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                    zoom: 4,
+                                    center: uluru
+                                });
+                                var marker = new google.maps.Marker({
+                                    position: uluru,
+                                    map: map
+                                });
+                            }
+                        </script>
+                        <script async defer
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzyqPuh8GZo4Ln3orDXcnpyPyiVf5FOlY&callback=initMap">
+                        </script>
+                    </div>
+                </div>
             </div>
-        </article>
-        <br>
+            <br>
+        @endif
     @endforeach
     {!! $links !!}
 @endsection

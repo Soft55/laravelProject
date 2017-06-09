@@ -14,13 +14,13 @@ class PropertiesTableSeeder extends Seeder {
     {
         DB::table('properties')->delete();
 
-        for($i = 0; $i < 100; ++$i)
+        for($i = 0; $i < 3; ++$i)
         {
             $date = $this->randDate();
             DB::table('properties')->insert([
                 'longitude' => rand(1,180), # -180 / 180
                 'latitude' => rand(1,90), # -90 / 90
-                'user_id' => rand(1, 10),
+                'user_id' => $i + 1,
                 'created_at' => $date,
                 'updated_at' => $date
             ]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Properties;
 use App\Repositories\PropertiesRepository;
 use App\Http\Requests\PropertiesRequest;
 
@@ -22,10 +23,9 @@ class PropertiesController extends Controller
     public function index()
     {
         $properties = $this->PropertiesRepository->getPaginate($this->nbrPerPage);
-        $test = $this;
         $links = $properties->render();
 
-        return view('liste', compact(['properties', 'test'], 'links'));
+        return view('liste', compact('properties', 'links'));
     }
 
     public function create()

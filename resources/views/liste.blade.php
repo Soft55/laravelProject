@@ -24,7 +24,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="map" class="col-md-8 col-md-offset-2" style="height:400px;width: 100%;">
+                    <div id="map" style="height:500px; width:100%;">
                         <script>
                             function initMap() {
                                 var uluru = {lat: {{ $property->latitude }}, lng: {{ $property->longitude }}};

@@ -26,6 +26,11 @@ class PropertiesRepository
         $this->properties->create($inputs);
     }
 
+    public function getById($id)
+    {
+        return $this->model->findOrFail($id);
+    }
+
     public function destroy($id)
     {
         $this->properties->findOrFail($id)->delete();

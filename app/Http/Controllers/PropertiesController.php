@@ -42,6 +42,20 @@ class PropertiesController extends Controller
         return redirect(route('Properties.index'));
     }
 
+    public function edit($id)
+    {
+        $properties = $this->PropertiesRepository->getById($id);
+
+        return view('edit',  compact('properties'));
+    }
+
+    public function update(PropertiesRequest $request, $id)
+    {
+        $this->PropertiesRepository->update($id, $request->all());
+
+        return redirect('properties')->withOk("L'utilisateur " . $request->input('latitude') . " a été modifié.");
+    }
+
     public function destroy($id)
     {
         $this->PropertiesRepository->destroy($id);

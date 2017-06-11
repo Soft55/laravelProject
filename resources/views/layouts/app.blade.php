@@ -56,6 +56,9 @@
                                         <a href="http://localhost/_github/laravelProject/public/properties">Home</a>
                                     </li>
                                     <li>
+                                        <a href="http://localhost/_github/laravelProject/public/properties/1/edit">Update properties</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

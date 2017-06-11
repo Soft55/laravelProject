@@ -14,6 +14,14 @@ class PropertiesRepository
         $this->properties = $properties;
     }
 
+    private function save(Properties $properties, Array $inputs)
+    {
+        $properties->longitude = $inputs['longitude'];
+        $properties->latitude = $inputs['latitude'];
+
+        $properties->save();
+    }
+
     public function getPaginate($n)
     {
         return $this->properties->with('user')
@@ -28,7 +36,12 @@ class PropertiesRepository
 
     public function getById($id)
     {
-        return $this->model->findOrFail($id);
+        return $this->properties->findOrFail($id);
+    }
+
+    public function update($id, Array $inputs)
+    {
+        $this->save($this->getById($id), $inputs);
     }
 
     public function destroy($id)

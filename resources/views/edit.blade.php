@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('propert')
+    <a href="http://localhost/_github/laravelProject/public/properties/{{ $properties }}/edit">Update properties</a>
+@endsection
+
 @section('content')
     <div class="col-sm-offset-4 col-sm-4">
         <br>

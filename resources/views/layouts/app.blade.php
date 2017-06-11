@@ -56,7 +56,7 @@
                                         <a href="http://localhost/_github/laravelProject/public/properties">Home</a>
                                     </li>
                                     <li>
-                                        <a href="http://localhost/_github/laravelProject/public/properties/1/edit">Update properties</a>
+                                        @yield('propert')
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"

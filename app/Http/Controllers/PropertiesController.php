@@ -53,7 +53,7 @@ class PropertiesController extends Controller
     {
         $this->PropertiesRepository->update($id, $request->all());
 
-        return redirect('properties')->withOk("L'utilisateur " . $request->input('latitude') . " a été modifié.");
+        return redirect('properties');
     }
 
     public function destroy($id)

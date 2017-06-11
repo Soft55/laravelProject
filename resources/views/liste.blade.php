@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('propert')
+    @foreach($properties as $property)
+        @if($property->user_id == Auth::id())
+            <a href="http://localhost/_github/laravelProject/public/properties/{{ $property->id }}/edit">Update properties</a>
+        @endif
+    @endforeach
+@endsection
+
 @section('content')
     @if(isset($info))
         <div class="row alert alert-info">{{ $info }}</div>
